@@ -129,6 +129,7 @@ enum AppMarkerType {
 	Crate = 6;
 	GenericRadius = 7;
 	PatrolHelicopter = 8;
+	TravelingVendor = 9;
 }
 
 message AppRequest {
@@ -227,15 +228,16 @@ message AppInfo {
 	required string map = 4;
 	required uint32 mapSize = 5;
 	required uint32 wipeTime = 6;
-	required uint32 players = 7;
+	optional uint32 players = 7;
 	required uint32 maxPlayers = 8;
-	required uint32 queuedPlayers = 9;
+	optional uint32 queuedPlayers = 9;
 	optional uint32 seed = 10;
 	optional uint32 salt = 11;
 	optional string logoImage = 12;
 	optional string nexus = 13;
 	optional int32 nexusId = 14;
 	optional string nexusZone = 15;
+	optional bool camerasEnabled = 16;
 }
 
 message AppTime {
@@ -281,7 +283,7 @@ message AppEntityPayload {
 }
 
 message AppTeamInfo {
-	required uint64 leaderSteamId = 1;
+	optional uint64 leaderSteamId = 1;
 	repeated AppTeamInfo.Member members = 2;
 	repeated AppTeamInfo.Note mapNotes = 3;
 	repeated AppTeamInfo.Note leaderMapNotes = 4;
@@ -289,16 +291,16 @@ message AppTeamInfo {
 	message Member {
 		required uint64 steamId = 1;
 		required string name = 2;
-		required float x = 3;
-		required float y = 4;
-		required bool isOnline = 5;
-		required uint32 spawnTime = 6;
-		required bool isAlive = 7;
-		required uint32 deathTime = 8;
+		optional float x = 3;
+		optional float y = 4;
+		optional bool isOnline = 5;
+		optional uint32 spawnTime = 6;
+		optional bool isAlive = 7;
+		optional uint32 deathTime = 8;
 	}
 
 	message Note {
-		required int32 type = 2;
+		optional int32 type = 2;
 		required float x = 3;
 		required float y = 4;
 	}
@@ -336,9 +338,9 @@ message AppMarker {
 		required int32 quantity = 2;
 		required int32 currencyId = 3;
 		required int32 costPerItem = 4;
-		required int32 amountInStock = 5;
-		required bool itemIsBlueprint = 6;
-		required bool currencyIsBlueprint = 7;
+		optional int32 amountInStock = 5;
+		optional bool itemIsBlueprint = 6;
+		optional bool currencyIsBlueprint = 7;
 		optional float itemCondition = 8;
 		optional float itemConditionMax = 9;
 	}
